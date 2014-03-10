@@ -1,5 +1,5 @@
 var cliClear = require("cli-clear");
-var cliTable = require("cli-table");
+var process  = require("../lib/process");
 
 
 
@@ -18,77 +18,20 @@ module.exports = function(grunt)
 	
 	
 	
-	function processContent(content)
+	function content(data, options)
 	{
-		if (typeof content == "function")
-		{
-			content = content.apply(grunt);
-		}
-		else if (content instanceof Array)
-		{
-			content.forEach( function(nestedContent, i)
-			{
-				content[i] = processContent(nestedContent);
-			});
-		}
-		else if ( content instanceof Object && !(content instanceof Array) )
-		{
-			for (var i in content)
-			{
-				content[i] = processContent( content[i] );
-			}
-		}
+		var output = process(data, options);
 		
-		return content;
+		if (output !== undefined)
+		{
+			grunt.log.writeln(output);
+		}
 	}
 	
 	
 	
 	grunt.registerMultiTask("content", "Display beautiful, informative content in a Grunt task.", function()
 	{
-		function content()
-		{
-			if (this.data.table || this.data.text)
-			{
-				var output = "";
-				
-				if (this.data.table)
-				{
-					if (this.data.table instanceof Array)
-					{
-						var table = new cliTable( options.table );
-						
-						this.data.table.forEach( function(row)
-						{
-							table.push( processContent(row) );
-						});
-						
-						output = table.toString();
-					}
-				}
-				else
-				{
-					output = processContent(this.data.text);
-				}
-				
-				if (output.length)
-				{
-					if (options.newLineBefore)
-					{
-						output = "\n"+output;
-					}
-					
-					if (options.newLineAfter)
-					{
-						output += "\n";
-					}
-				}
-				
-				grunt.log.writeln(output);
-			}
-		}
-		
-		
 		// Target options
 		var options = this.options();
 		
@@ -115,13 +58,13 @@ module.exports = function(grunt)
 			
 			cliClear( function()
 			{
-				content.call(this);
+				content(this.data, options);
 				done();
 			}.bind(this) );
 		}
 		else
 		{
-			content.call(this);
+			content(this.data, options);
 		}
 	});
 }

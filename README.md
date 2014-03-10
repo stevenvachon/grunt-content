@@ -1,4 +1,4 @@
-# grunt-content
+# grunt-content [![NPM Version](http://badge.fury.io/js/grunt-content.png)](http://badge.fury.io/js/grunt-content) [![Build Status](https://secure.travis-ci.org/stevenvachon/grunt-content.png)](http://travis-ci.org/stevenvachon/grunt-content) [![Dependency Status](https://david-dm.org/stevenvachon/grunt-content.png)](https://david-dm.org/stevenvachon/grunt-content)
 
 > Display beautiful, informative content in a Grunt task.
 
@@ -41,7 +41,7 @@ grunt.initConfig({
 Type: `Array`,`Function`  
 Default value: `null`  
 
-Table content. An array or a function returning an array of [cli-table](https://github.com/LearnBoost/cli-table) data. Takes priority over `options.text`.
+Table content. An array or a function returning an array of [cli-table](https://github.com/LearnBoost/cli-table) data. Takes priority over `text`.
 
 #### text
 Type: `String`,`Function`  
@@ -149,7 +149,7 @@ grunt.initConfig({
       function() {
         var newRows = [];
         for (var i=0; i<50; i++) {
-          newRows.push( ["table cell"],["table cell"] );
+          newRows.push([ ["table cell"],["table cell"] ]);
         }
         return newRows;
       },
@@ -159,6 +159,7 @@ grunt.initConfig({
 ```
 
 ## Release History
+* 0.2.0 fixed dynamic tables, added tests
 * 0.1.0 initial release
 
 ---
