@@ -1,0 +1,39 @@
+{
+  "name": "grunt-content",
+  "description": "Display beautiful, informative content in a Grunt task.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/stevenvachon/grunt-content",
+  "author": {
+    "name": "Steven Vachon",
+    "email": "contact@svachon.com",
+    "url": "http://www.svachon.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stevenvachon/grunt-content.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stevenvachon/grunt-content/issues"
+  },
+  "main": "tasks/content.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "cli-clear": "~0.1",
+    "cli-table": "~0.3",
+    "grunt-log-headers": "~0.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.2"
+  },
+  "keywords": [
+    "cli-clear",
+    "cli-table",
+    "content",
+    "Gruntfile",
+    "gruntplugin",
+    "log",
+    "table"
+  ]
+}
