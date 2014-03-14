@@ -3,30 +3,47 @@ var stripColors = require("colors").stripColors;
 
 
 
-var tableOptions =
+function defaultTable(tableData)
 {
-	default:
+	return process( {table:tableData},
 	{
-		colWidths: [12,12]
-	},
-	vertical:
+		table:
+		{
+			colWidths: [12,12]
+		}
+	});
+}
+
+function verticalTable(tableData)
+{
+	return process( {table:tableData},
 	{
-		colWidths: [14,12]
-	},
-	cross:
+		table:
+		{
+			colWidths: [14,12]
+		}
+	});
+}
+
+function crossTable(tableData)
+{
+	return process( {table:tableData},
 	{
-		colWidths: [14,14,14],
-		head: ["","table header","table header"]
-	}
-};
+		table:
+		{
+			colWidths: [14,14,14],
+			head: ["","table header","table header"]
+		}
+	});
+}
 
 
 
-function errored(tableData)
+/*function errored(tableData)
 {
 	try
 	{
-		process( {table:tableData}, {table:tableOptions.default} );
+		defaultTable(tableData);
 	}
 	catch (error)
 	{
@@ -34,7 +51,7 @@ function errored(tableData)
 	}
 	
 	return false;
-}
+}*/
 
 
 
@@ -65,27 +82,23 @@ describe("Tables", function()
 		expected3 += "│ table header │ table cell   │ table cell   │\n";
 		expected3 += "└──────────────┴──────────────┴──────────────┘";
 		
-		var tableData1 =
+		var output1 = defaultTable(
 		[
 			[ ["table cell"],["table cell"] ],
 			[ ["table cell"],["table cell"] ]
-		];
+		]);
 		
-		var tableData2 =
+		var output2 = verticalTable(
 		[
 			{ "table header": "table cell" },
 			{ "table header": "table cell" }
-		];
+		]);
 		
-		var tableData3 =
+		var output3 = crossTable(
 		[
 			{ "table header": ["table cell","table cell"] },
 			{ "table header": ["table cell","table cell"] }
-		];
-		
-		var output1 = process( {table:tableData1}, {table:tableOptions.default}  );
-		var output2 = process( {table:tableData2}, {table:tableOptions.vertical} );
-		var output3 = process( {table:tableData3}, {table:tableOptions.cross}    );
+		]);
 		
 		expect( stripColors(output1) ).to.equal(expected1);
 		expect( stripColors(output2) ).to.equal(expected2);
@@ -96,14 +109,15 @@ describe("Tables", function()
 	
 	
 	
-	it("should fail with static data (non-array)", function(done)
+	it("should skip with static data (non-array)", function(done)
 	{
-		expect( errored({}    ) ).to.be.true;
-		expect( errored(0     ) ).to.be.true;
-		expect( errored(1     ) ).to.be.true;
-		expect( errored(false ) ).to.be.true;
-		expect( errored(true  ) ).to.be.true;
-		expect( errored("text") ).to.be.true;
+		expect( defaultTable({}       ) ).to.equal("");
+		expect( defaultTable(0        ) ).to.equal("");
+		expect( defaultTable(1        ) ).to.equal("");
+		expect( defaultTable(false    ) ).to.equal("");
+		expect( defaultTable(true     ) ).to.equal("");
+		expect( defaultTable("text"   ) ).to.equal("");
+		expect( defaultTable(undefined) ).to.equal("");
 		
 		done();
 	});
@@ -121,7 +135,7 @@ describe("Tables", function()
 		expected += "│ table cell │ table cell │\n";
 		expected += "└────────────┴────────────┘";
 		
-		var tableData = function()
+		var output = defaultTable( function()
 		{
 			var rows = [];
 			
@@ -131,9 +145,7 @@ describe("Tables", function()
 			}
 			
 			return rows;
-		};
-		
-		var output = process( {table:tableData}, {table:tableOptions.default} );
+		});
 		
 		expect( stripColors(output) ).to.equal(expected);
 		
@@ -142,14 +154,15 @@ describe("Tables", function()
 	
 	
 	
-	it("should fail with dynamic data (function) returning a non-array", function(done)
+	it("should skip with dynamic data (function) returning a non-array", function(done)
 	{
-		expect( errored(function(){return {}    }) ).to.be.true;
-		expect( errored(function(){return 0     }) ).to.be.true;
-		expect( errored(function(){return 1     }) ).to.be.true;
-		expect( errored(function(){return false }) ).to.be.true;
-		expect( errored(function(){return true  }) ).to.be.true;
-		expect( errored(function(){return "text"}) ).to.be.true;
+		expect( defaultTable(function(){return {}       }) ).to.equal("");
+		expect( defaultTable(function(){return 0        }) ).to.equal("");
+		expect( defaultTable(function(){return 1        }) ).to.equal("");
+		expect( defaultTable(function(){return false    }) ).to.equal("");
+		expect( defaultTable(function(){return true     }) ).to.equal("");
+		expect( defaultTable(function(){return "text"   }) ).to.equal("");
+		expect( defaultTable(function(){return undefined}) ).to.equal("");
 		
 		done();
 	});
@@ -169,7 +182,7 @@ describe("Tables", function()
 		expected += "│ table cell │ table cell │\n";
 		expected += "└────────────┴────────────┘";
 		
-		var tableData =
+		var output = defaultTable(
 		[
 			[ ["table cell"],["table cell"] ],
 			
@@ -184,9 +197,7 @@ describe("Tables", function()
 			},
 			
 			[ ["table cell"],["table cell"] ]
-		];
-		
-		var output = process( {table:tableData}, {table:tableOptions.default} );
+		]);
 		
 		expect( stripColors(output) ).to.equal(expected);
 		
@@ -210,7 +221,7 @@ describe("Tables", function()
 		expected += "│ table header │ table cell   │ table cell   │\n";
 		expected += "└──────────────┴──────────────┴──────────────┘";
 		
-		var tableData =
+		var output = crossTable(
 		[
 			{ "table header": ["table cell","table cell"] },
 			
@@ -225,9 +236,39 @@ describe("Tables", function()
 			},
 			
 			{ "table header": ["table cell","table cell"] }
-		];
+		]);
 		
-		var output = process( {table:tableData}, {table:tableOptions.cross} );
+		expect( stripColors(output) ).to.equal(expected);
+		
+		done();
+	});
+	
+	
+	
+	it("should skip with dynamic row data (functions) returning incompatible formats", function(done)
+	{
+		var expected = "";
+		expected += "┌────────────┬────────────┐\n";
+		expected += "│ table cell │ table cell │\n";
+		expected += "├────────────┼────────────┤\n";
+		expected += "│ table cell │ table cell │\n";
+		expected += "└────────────┴────────────┘";
+		
+		var output = defaultTable(
+		[
+			[ ["table cell"],["table cell"] ],
+			
+			function(){return []},
+			//function(){return {}},	// these cause an error in cli-table
+			/*function(){return 0},
+			function(){return 1},
+			function(){return false},
+			function(){return true},
+			function(){return "text"},*/
+			function(){return undefined},
+			
+			[ ["table cell"],["table cell"] ]
+		]);
 		
 		expect( stripColors(output) ).to.equal(expected);
 		
@@ -247,7 +288,7 @@ describe("Tables", function()
 		expected += "│ table cell │ table cell │\n";
 		expected += "└────────────┴────────────┘";
 		
-		var tableData =
+		var output = defaultTable(
 		[
 			[ ["table cell"],["table cell"] ],
 			
@@ -262,9 +303,7 @@ describe("Tables", function()
 			} ],
 			
 			[ ["table cell"],["table cell"] ]
-		];
-		
-		var output = process( {table:tableData}, {table:tableOptions.default} );
+		]);
 		
 		expect( stripColors(output) ).to.equal(expected);
 		
@@ -284,7 +323,7 @@ describe("Tables", function()
 		expected += "│ table header │ table cell   │ table cell   │\n";
 		expected += "└──────────────┴──────────────┴──────────────┘";
 		
-		var tableData =
+		var output = crossTable(
 		[
 			{ "table header": ["table cell","table cell"] },
 			{
@@ -298,9 +337,51 @@ describe("Tables", function()
 					return newCells;
 				}
 			}
-		];
+		]);
 		
-		var output = process( {table:tableData}, {table:tableOptions.cross} );
+		expect( stripColors(output) ).to.equal(expected);
+		
+		done();
+	});
+	
+	
+	
+	it("should skip with dynamic cell data (functions) returning incompatible formats", function(done)
+	{
+		var expected = "";
+		expected += "┌────────────┬────────────┐\n";
+		expected += "│ table cell │ table cell │\n";
+		expected += "├────────────┼────────────┤\n";
+		expected += "├────────────┼────────────┤\n";
+		expected += "├────────────┼────────────┤\n";
+		expected += "│ [object O… │\n"             ;
+		expected += "├────────────┼────────────┤\n";
+		expected += "│ 0          │ 1          │\n";
+		expected += "├────────────┼────────────┤\n";
+		expected += "│ false      │ true       │\n";
+		expected += "├────────────┼────────────┤\n";
+		expected += "│ text       │\n"             ;
+		expected += "├────────────┼────────────┤\n";
+		expected += "├────────────┼────────────┤\n";
+		expected += "├────────────┼────────────┤\n";
+		expected += "│ table cell │ table cell │\n";
+		expected += "└────────────┴────────────┘";
+		
+		var output = defaultTable(
+		[
+			[ ["table cell"],               ["table cell"]                ],
+			
+			[ function(){return []}                                       ],
+			[ function(){return []},        function(){return []}         ],
+			[ function(){return {}}                                       ],
+			[ function(){return 0},         function(){return 1}          ],
+			[ function(){return false},     function(){return true}       ],
+			[ function(){return "text"}                                   ],
+			[ function(){return undefined}                                ],
+			[ function(){return undefined}, function(){return undefined}  ],
+			
+			[ ["table cell"],               ["table cell"]                ]
+		]);
 		
 		expect( stripColors(output) ).to.equal(expected);
 		

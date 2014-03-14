@@ -1,7 +1,7 @@
 {
   "name": "grunt-content",
   "description": "Display beautiful, informative content in a Grunt task.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/stevenvachon/grunt-content",
   "author": {
     "name": "Steven Vachon",

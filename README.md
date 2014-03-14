@@ -159,6 +159,7 @@ grunt.initConfig({
 ```
 
 ## Release History
+* 0.2.1 fixed handling of dynamic data returning `undefined`
 * 0.2.0 fixed dynamic tables, added tests
 * 0.1.0 initial release
 

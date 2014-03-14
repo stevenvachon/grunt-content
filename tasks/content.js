@@ -22,7 +22,7 @@ module.exports = function(grunt)
 	{
 		var output = process(data, options);
 		
-		if (output !== undefined)
+		if (output.length)
 		{
 			grunt.log.writeln(output);
 		}
