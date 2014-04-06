@@ -1,6 +1,6 @@
-# grunt-content [![NPM Version](http://badge.fury.io/js/grunt-content.png)](http://badge.fury.io/js/grunt-content) [![Build Status](https://secure.travis-ci.org/stevenvachon/grunt-content.png)](http://travis-ci.org/stevenvachon/grunt-content) [![Dependency Status](https://david-dm.org/stevenvachon/grunt-content.png)](https://david-dm.org/stevenvachon/grunt-content)
+# grunt-content [![NPM Version](http://badge.fury.io/js/grunt-content.svg)](http://badge.fury.io/js/grunt-content) [![Build Status](https://secure.travis-ci.org/stevenvachon/grunt-content.svg)](http://travis-ci.org/stevenvachon/grunt-content) [![Dependency Status](https://david-dm.org/stevenvachon/grunt-content.svg)](https://david-dm.org/stevenvachon/grunt-content)
 
-> Display beautiful, informative content in a Grunt task.
+> Display informative and pretty content within a Grunt task.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
@@ -159,6 +159,7 @@ grunt.initConfig({
 ```
 
 ## Release History
+* 0.2.2 updated [cli-clear](https://github.com/stevenvachon/cli-clear)
 * 0.2.1 fixed handling of dynamic data returning `undefined`
 * 0.2.0 fixed dynamic tables, added tests
 * 0.1.0 initial release

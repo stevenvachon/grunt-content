@@ -1,5 +1,5 @@
-var cliClear = require("cli-clear");
-var process  = require("../lib/process");
+var clear   = require("cli-clear");
+var process = require("../");
 
 
 
@@ -48,23 +48,10 @@ module.exports = function(grunt)
 			newLineBefore:  newLineBefore
 		});
 		
-		
 		grunt.verbose.writeflags(options, "Options");
 		
+		if (options.clearBefore) clear();
 		
-		if (options.clearBefore)
-		{
-			var done = this.async();
-			
-			cliClear( function()
-			{
-				content(this.data, options);
-				done();
-			}.bind(this) );
-		}
-		else
-		{
-			content(this.data, options);
-		}
+		content(this.data, options);
 	});
 }

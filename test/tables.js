@@ -1,4 +1,5 @@
-var process = require("../lib/process");
+var expect  = require("chai").expect;
+var process = require("../");
 var stripColors = require("colors").stripColors;
 
 
