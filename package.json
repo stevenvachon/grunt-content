@@ -1,7 +1,7 @@
 {
   "name": "grunt-content",
   "description": "Display informative and pretty content within a Grunt task.",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "homepage": "https://github.com/stevenvachon/grunt-content",
   "author": {
     "name": "Steven Vachon",
@@ -18,7 +18,7 @@
   "dependencies": {
     "cli-clear": "^1.0",
     "cli-table": "~0.3",
-    "grunt-log-headers": "~0.1"
+    "grunt-log-headers": "^1.0"
   },
   "devDependencies": {
     "chai": "^1.9",
@@ -29,11 +29,15 @@
     "grunt": "~0.4"
   },
   "engines": {
-    "node": ">= 0.10.0"
+    "node": ">= 0.10"
   },
   "scripts": {
     "test": "mocha test/ --bail --reporter spec --check-leaks"
   },
+  "files": [
+    "index.js",
+    "tasks"
+  ],
   "keywords": [
     "cli-clear",
     "cli-table",

@@ -159,6 +159,7 @@ grunt.initConfig({
 ```
 
 ## Release History
+* 1.0.0 release
 * 0.2.2 updated [cli-clear](https://github.com/stevenvachon/cli-clear)
 * 0.2.1 fixed handling of dynamic data returning `undefined`
 * 0.2.0 fixed dynamic tables, added tests
