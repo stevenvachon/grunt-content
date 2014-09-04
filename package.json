@@ -1,7 +1,8 @@
 {
   "name": "grunt-content",
   "description": "Display informative and pretty content within a Grunt task.",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "license": "MIT",
   "homepage": "https://github.com/stevenvachon/grunt-content",
   "author": {
     "name": "Steven Vachon",
@@ -16,20 +17,18 @@
     "url": "https://github.com/stevenvachon/grunt-content/issues"
   },
   "dependencies": {
-    "cli-clear": "^1.0",
-    "cli-table": "~0.3",
-    "grunt-log-headers": "^1.0"
+    "cli-clear": "^1.0.4",
+    "cli-table": "~0.3.1",
+    "grunt-log-headers": "^1.0.2"
   },
   "devDependencies": {
-    "chai": "^1.9",
-    "colors": "~0.6",
-    "mocha": "^1.21"
-  },
-  "peerDependencies": {
-    "grunt": "~0.4"
+    "chai": "^3.5.0",
+    "colors": "^1.1.2",
+    "grunt": ">=0.4",
+    "mocha": "^2.4.5"
   },
   "engines": {
-    "node": ">= 0.10"
+    "node": ">=0.10"
   },
   "scripts": {
     "test": "mocha test/ --bail --reporter spec --check-leaks"

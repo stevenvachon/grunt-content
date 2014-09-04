@@ -1,9 +1,10 @@
-# grunt-content [![NPM Version](http://badge.fury.io/js/grunt-content.svg)](http://badge.fury.io/js/grunt-content) [![Build Status](https://secure.travis-ci.org/stevenvachon/grunt-content.svg)](http://travis-ci.org/stevenvachon/grunt-content) [![Dependency Status](https://david-dm.org/stevenvachon/grunt-content.svg)](https://david-dm.org/stevenvachon/grunt-content)
+# grunt-content [![NPM Version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][david-image]][david-url]
 
 > Display informative and pretty content within a Grunt task.
 
+
 ## Getting Started
-This plugin requires Grunt `~0.4.2`
+This plugin requires Grunt `>=0.4`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
@@ -17,7 +18,9 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-content');
 ```
 
+
 ## The "content" task
+
 
 ### Overview
 In your project's Gruntfile, add a section named `content` to the data object passed into `grunt.initConfig()`.
@@ -35,6 +38,7 @@ grunt.initConfig({
 });
 ```
 
+
 ### Content Types
 
 #### table
@@ -48,6 +52,7 @@ Type: `String`,`Function`
 Default value: `""`  
 
 Text content. A string or a function returning a string.
+
 
 ### Options
 
@@ -80,6 +85,7 @@ Type: `Object`
 Default value: `null`  
 
 Options passed to [cli-table](https://github.com/LearnBoost/cli-table).
+
 
 ### Usage Examples
 
@@ -158,13 +164,19 @@ grunt.initConfig({
 });
 ```
 
+
 ## Release History
+* 1.0.1 supports grunt `1.x` and npm `3.x`
 * 1.0.0 release
 * 0.2.2 updated [cli-clear](https://github.com/stevenvachon/cli-clear)
 * 0.2.1 fixed handling of dynamic data returning `undefined`
 * 0.2.0 fixed dynamic tables, added tests
 * 0.1.0 initial release
 
----
 
-[![Analytics](https://ga-beacon.appspot.com/UA-3614308-11/stevenvachon/grunt-content)](https://github.com/igrigorik/ga-beacon "Google Analytics") [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/stevenvachon/grunt-content/trend.png)](https://bitdeli.com/free)
+[npm-image]: https://img.shields.io/npm/v/grunt-content.svg
+[npm-url]: https://npmjs.org/package/grunt-content
+[travis-image]: https://img.shields.io/travis/stevenvachon/grunt-content.svg
+[travis-url]: https://travis-ci.org/stevenvachon/grunt-content
+[david-image]: https://img.shields.io/david/stevenvachon/grunt-content.svg
+[david-url]: https://david-dm.org/stevenvachon/grunt-content
